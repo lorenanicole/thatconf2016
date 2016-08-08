@@ -3,9 +3,10 @@
 
 Game := Object clone
 Game players := List clone
-Game questions := List clone
+Game questions := Map clone
 Game categories := List clone
 Game currentCategory := nil
+Game winner := nil
 Game loadQuestions := method(
 	f := File with("questions.csv")
 	f openForReading
@@ -16,10 +17,14 @@ Game loadQuestions := method(
 		# parsedLine = l allMatchesOfRegex("([^,]+)") map (at(0));
 		parsedLine := l split(",");
 		q := Question new(parsedLine at(0), parsedLine at(1) asLowercase, parsedLine at(2));
-		Game questions append(q);
+		if(Game questions hasKey(q category),
+			temp := Game questions at(q category);
+			Game questions atPut(q category, temp append(q)),
+			Game questions atPut(q category, List clone append(q))
+		) 
 	)
 	f close
-	Game categories = Game questions map(category) unique;
+	Game categories = Game questions keys;
 )
 Game createPlayers := method(numPlayers,
 	for(num, 1, numPlayers, 
@@ -46,15 +51,14 @@ Game pickCategory := method(
 	Game currentCategory = answer;
 )
 Game pickQuestion := method(
-	categoryQuestions := Game questions select(question, question category == Game currentCategory);
+	categoryQuestions := Game questions at(Game currentCategory) select(question, question used == false);
+	while(categoryQuestions size < 1, 
+		Game pickCategory
+		categoryQuestions := Game questions at(Game currentCategory) select(question, question used == false);
+	)
 	number := Random value * categoryQuestions size;
 	number = number round;
 	q := categoryQuestions at(number);
-	while(q used == true,
-		number = Random value * categoryQuestions size;
-		number = number round;
-		q = categoryQuestions at(number);
-	)
 	q used = true;
 	q
 )
@@ -65,6 +69,11 @@ Game answerQuestion := method(answers, question,
 		write("Player ", player name, " has ", player points, " points.\n");
 		counter = counter + 1;
 	)
+)
+Game results := method(
+	Game players = Game players sortBy(block(first, second, first points > second points));
+	Game winner = Game players at(0);
+	write("Player ", winner name, " wins with ", winner points "!!");
 )
 
 Player := Object clone
@@ -113,11 +122,14 @@ Game createPlayers(selectNumPlayers)
 Game seePlayers
 Game seeCategories
 Game pickCategory
-question := Game pickQuestion
-showQuestion(question)
-answers := askPlayersForAnswer
-Game answerQuestion(answers, question)
-showAnswer(question)
+1 repeat(
+	question := Game pickQuestion
+	showQuestion(question)
+	answers := askPlayersForAnswer
+	Game answerQuestion(answers, question)
+	showAnswer(question)
+)
+Game results
 
 
 
