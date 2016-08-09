@@ -41,7 +41,7 @@ Game categories := List clone
 Game currentCategory := nil
 Game winner := nil
 Game loadQuestions := method(
-	s := File with("example.txt") openForReading contents
+	s := File with("output.txt") openForReading contents
 	Game questions := doString(s)
 	Game categories = Game questions keys;
 )

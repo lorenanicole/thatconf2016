@@ -6,7 +6,7 @@
 	"IO Programming Language": "Io is a class based language, true or false?\nFalse",
 	"That Conference": "There are approximately how many people in attendance for this year's conference?\n1600",
 	"That Conference": "How many That Conferences have there been before?\n5",
-	"That Conference": "How many children are approximately in attendance?\n400",
+	"That Conference": "How many children are approximately in attendance?\n40",
 	"Lorena": "Is from what city?\nChicago",
 	"Lorena": "Favorite character in Mortal Kombat?\nScorpion"
 }
