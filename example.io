@@ -1,3 +1,5 @@
+#!/usr/local/bin/io
+
 # Prototypes for trivia game
 # Regex  # Include for loading questions logic
 
@@ -29,7 +31,7 @@ Game loadQuestions := method(
 Game createPlayers := method(numPlayers,
 	for(num, 1, numPlayers, 
 		write("What is the name for player ", num, " ?\n");
-		answer := File standardInput readLine;
+		answer := num;
 		Game players append(Player new(answer));
 	) 
 )
@@ -118,7 +120,7 @@ showAnswer := method(question, write("Answer: ", question answer, "\n"))
 # Game logic
 
 Game loadQuestions
-Game createPlayers(selectNumPlayers)
+Game createPlayers(2)
 Game seePlayers
 Game seeCategories
 Game pickCategory
