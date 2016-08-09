@@ -1,4 +1,12 @@
 {
 	"ART AND LITERATURE": "Who had an encounter with the three bears?\nGoldilocks",
-	"ART AND LITERATURE": "Who is the bear in The Jungle Book?\nBaloo" 
+	"ART AND LITERATURE": "Who is the bear in The Jungle Book?\nBaloo",
+	"IO Programming Language": "The top level namespace in IO is named what?\nLobby",
+	"IO Programming Language": "What object includes the list of all operators in Io?\nOperatorTable",
+	"IO Programming Language": "Io is a class based language, true or false?\nFalse",
+	"That Conference": "There are approximately how many people in attendance for this year's conference?\n1600",
+	"That Conference": "How many That Conferences have there been before?\n5",
+	"That Conference": "How many children are approximately in attendance?\n400",
+	"Lorena": "Is from what city?\nChicago",
+	"Lorena": "Favorite character in Mortal Kombat?\nScorpion"
 }

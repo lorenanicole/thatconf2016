@@ -74,6 +74,9 @@ Game answerQuestion := method(answers, question,
 )
 Game results := method(
 	Game players = Game players sortBy(block(first, second, first points > second points));
+	if(Game players size < 2, 
+		return write("Only one player, so the winner is ", Game players at(0) name, "\n")
+	)
 	if(Game players at(0) points == Game players at(1) points,
 		write("We have a tie! ", Game players at(0) name, " and ", Game players at(1) name, " win!\n"),
 		Game winner = Game players at(0);
@@ -104,6 +107,7 @@ Question new := method(text, category, answer,
 selectNumPlayers := method(
 	write("How many players are there?\n");
 	answer := File standardInput readLine;
+	if(answer size == 0, answer = "1");
 	write("OK, today we'll have ", answer, " players.\n");
 	answer asNumber;
 )
