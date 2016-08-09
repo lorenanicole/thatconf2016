@@ -74,8 +74,11 @@ Game answerQuestion := method(answers, question,
 )
 Game results := method(
 	Game players = Game players sortBy(block(first, second, first points > second points));
-	Game winner = Game players at(0);
-	write("Player ", winner name, " wins with ", winner points "!!");
+	if(Game players at(0) points == Game players at(1) points,
+		write("We have a tie! ", Game players at(0) name, " and ", Game players at(1) name, " win!\n"),
+		Game winner = Game players at(0);
+		write("Player ", winner name, " wins with ", winner points "!!\n");
+	)
 )
 
 Player := Object clone
