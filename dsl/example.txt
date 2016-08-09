@@ -1,0 +1,4 @@
+{
+	"ART AND LITERATURE": "Who had an encounter with the three bears?\nGoldilocks",
+	"ART AND LITERATURE": "Who is the bear in The Jungle Book?\nBaloo" 
+}
