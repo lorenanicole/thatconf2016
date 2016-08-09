@@ -74,6 +74,16 @@ Game answerQuestion := method(answers, question,
 )
 Game results := method(
 	Game players = Game players sortBy(block(first, second, first points > second points));
+	pretext := """
+
+
+		\   \  /  \  /   / |  | |  \ |  | |  \ |  | |   ____||   _  \     _ 
+		 \   \/    \/   /  |  | |   \|  | |   \|  | |  |__   |  |_)  |   (_)
+		  \            /   |  | |  . `  | |  . `  | |   __|  |      /       
+		   \    /\    /    |  | |  |\   | |  |\   | |  |____ |  |\  \----._ 
+		    \__/  \__/     |__| |__| \__| |__| \__| |_______|| _| `._____(_)"""
+
+    write(pretext, "\n")
 	if(Game players size < 2, 
 		return write("Only one player, so the winner is ", Game players at(0) name, "\n")
 	)
@@ -83,6 +93,7 @@ Game results := method(
 		write("Player ", winner name, " wins with ", winner points "!!\n");
 	)
 )
+
 
 Player := Object clone
 Player new := method(name, 
@@ -123,6 +134,11 @@ askPlayersForAnswer := method(
 )
 showQuestion := method(question, write(question text, "\n"))
 showAnswer := method(question, write("Answer: ", question answer, "\n"))
+numQuestions := method(
+	write("How many questions should we play?\n");
+	answer := File standardInput readLine;
+	answer asNumber;
+)
 
 # Game logic
 
@@ -131,7 +147,7 @@ Game createPlayers(selectNumPlayers)
 Game seePlayers
 Game seeCategories
 Game pickCategory
-1 repeat(
+numQuestions repeat(
 	question := Game pickQuestion
 	showQuestion(question)
 	answers := askPlayersForAnswer
